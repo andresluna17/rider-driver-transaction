@@ -7,7 +7,7 @@ import {
 } from 'sequelize-typescript';
 
 @Table({
-  tableName: 'product',
+  tableName: 'rider',
 })
 export class Rider extends Model {
   @PrimaryKey
