@@ -10,10 +10,10 @@ import {
   tableName: 'driver',
 })
 export class Driver extends Model {
-  @PrimaryKey
   @AutoIncrement
+  @PrimaryKey
   @Column
-  id: string;
+  id: number;
 
   @Column
   name: string;

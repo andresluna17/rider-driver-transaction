@@ -14,10 +14,10 @@ import { Rider } from 'src/rider/entities/rider.entity';
   tableName: 'ride',
 })
 export class Ride extends Model {
-  @PrimaryKey
   @AutoIncrement
+  @PrimaryKey
   @Column
-  id: string;
+  id: number;
 
   @ForeignKey(() => Rider)
   @Column({ field: 'id' })

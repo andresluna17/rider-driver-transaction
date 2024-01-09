@@ -10,10 +10,10 @@ import {
   tableName: 'rider',
 })
 export class Rider extends Model {
-  @PrimaryKey
   @AutoIncrement
+  @PrimaryKey
   @Column
-  id: string;
+  id: number;
 
   @Column
   name: string;
@@ -23,6 +23,7 @@ export class Rider extends Model {
 
   @Column({
     values: ['active', 'inactive'],
+    defaultValue: 'active',
   })
   status: string;
 }
