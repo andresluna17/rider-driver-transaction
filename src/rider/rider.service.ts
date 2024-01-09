@@ -12,22 +12,22 @@ export class RiderService {
   ) {}
 
   create(createRiderDto: CreateRiderDto) {
-    return 'This action adds a new rider';
+    return this.riderRepository.create(createRiderDto as any);
   }
 
   findAll() {
-    return `This action returns all rider`;
+    return this.riderRepository.findAll();
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} rider`;
+    return this.riderRepository.findOne({ where: { id } });
   }
 
   update(id: number, updateRiderDto: UpdateRiderDto) {
-    return `This action updates a #${id} rider`;
+    return this.riderRepository.update({ where: id }, updateRiderDto as any);
   }
 
   remove(id: number) {
-    return `This action removes a #${id} rider`;
+    return this.riderRepository.destroy({ where: { id } });
   }
 }
