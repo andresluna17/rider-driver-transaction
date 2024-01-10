@@ -6,6 +6,7 @@ import { Driver } from 'src/driver/entities/driver.entity';
 import { FinishRideDto } from './dto/finish-ride.dto';
 import { getDistanceKM } from '../utils/getDistance';
 import { WompiService } from './wompi/wompi.service';
+import { Rider } from 'src/rider/entities/rider.entity';
 
 const baseFee = 3500;
 @Injectable()
@@ -40,7 +41,10 @@ export class RideService {
 
   async finish(id: string, finishRideDto: FinishRideDto) {
     try {
-      const ride = await this.rideRepository.findOne({ where: { id } });
+      const ride = await this.rideRepository.findOne({
+        where: { id },
+        include: Rider,
+      });
       ride.endPoint = `${finishRideDto.lat},${finishRideDto.lon}`;
       const [initLat, initLon] = ride.initPoint.split(',');
       const kmRide = getDistanceKM(
@@ -60,8 +64,15 @@ export class RideService {
       );
       ride.price = totalPriceRide;
       ride.status = 'completed';
-      const token = await this.wompiService.getAcceptanceToken();
-      return { totalKmPrice, totalMinutePrice, totalPriceRide, token };
+      const wompiTransaction = await this.wompiService.createTransaction(
+        totalPriceRide,
+        ride.rider,
+        finishRideDto.tokenCardId,
+        ride.id.toString(),
+      );
+      ride.transactionId = wompiTransaction.id;
+      ride.save();
+      return { ride, wompiTransaction };
     } catch (error) {
       console.error(error);
       throw new BadRequestException(error, 'Error');
