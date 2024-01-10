@@ -5,6 +5,7 @@ import { InjectModel } from '@nestjs/sequelize';
 import { Driver } from 'src/driver/entities/driver.entity';
 import { FinishRideDto } from './dto/finish-ride.dto';
 import { getDistanceKM } from '../utils/getDistance';
+import { WompiService } from './wompi/wompi.service';
 
 const baseFee = 3500;
 @Injectable()
@@ -14,6 +15,7 @@ export class RideService {
     private rideRepository: typeof Ride,
     @InjectModel(Ride)
     private driverRepository: typeof Driver,
+    private wompiService: WompiService,
   ) {}
 
   async create(createRideDto: CreateRideDto) {
@@ -58,7 +60,8 @@ export class RideService {
       );
       ride.price = totalPriceRide;
       ride.status = 'completed';
-      return { totalKmPrice, totalMinutePrice, totalPriceRide };
+      const token = await this.wompiService.getAcceptanceToken();
+      return { totalKmPrice, totalMinutePrice, totalPriceRide, token };
     } catch (error) {
       console.error(error);
       throw new BadRequestException(error, 'Error');
