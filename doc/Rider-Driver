@@ -1,0 +1,80 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "Rider-Driver",
+    "dateExported": "2024-02-23T06:03:32.566Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "64cc5d0f-80bb-4db5-8174-0ae98262b288",
+            "colId": "09e92243-a1ce-4e82-926b-120140461601",
+            "containerId": "",
+            "name": "http://localhost:3000/driver",
+            "url": "http://localhost:3000/driver",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2024-02-23T04:14:56.697Z",
+            "modified": "2024-02-23T04:14:56.697Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "deda0883-172c-4268-84a7-96af1ef84f5c",
+            "colId": "09e92243-a1ce-4e82-926b-120140461601",
+            "containerId": "",
+            "name": "http://localhost:3000/ride",
+            "url": "http://localhost:3000/ride",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2024-02-23T05:59:23.705Z",
+            "modified": "2024-02-23T05:59:23.705Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"riderId\": 1,\n  \"lon\": -74.1469444444,\n  \"lat\": 4.70138888889\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "ff2353dc-5c0a-41ee-bc8a-b9040ccd68a8",
+            "colId": "09e92243-a1ce-4e82-926b-120140461601",
+            "containerId": "",
+            "name": "http://localhost:3000/ride Finish",
+            "url": "http://localhost:3000/ride/1",
+            "method": "POST",
+            "sortNum": 30000,
+            "created": "2024-02-23T05:59:31.005Z",
+            "modified": "2024-02-23T05:59:31.005Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"lon\": -74.0554677,\n  \"lat\": 4.6052221,\n  \"tokenCardId\": \"tok_test_90174_d6B20716bF0b6F33e016c2f2389B0540\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "219417fd-e815-4a2d-805b-74c1ede096e5",
+            "colId": "09e92243-a1ce-4e82-926b-120140461601",
+            "containerId": "",
+            "name": "http://localhost:3000/driver",
+            "url": "http://localhost:3000/driver",
+            "method": "POST",
+            "sortNum": 40000,
+            "created": "2024-02-23T05:59:38.984Z",
+            "modified": "2024-02-23T05:59:38.984Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"John Doe NO AVAILABLE\",\n  \"email\": \"johndoe@example.com\",\n  \"inService\": true,\n  \"latitude\": 4.6755210,\n  \"longitude\": -74.1375590,\n  \"status\": \"active\"\n}",
+                "form": []
+            },
+            "tests": []
+        }
+    ]
+}
