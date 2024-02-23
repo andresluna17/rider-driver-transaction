@@ -6,6 +6,7 @@ import {
   AutoIncrement,
   ForeignKey,
   BelongsTo,
+  DefaultScope,
 } from 'sequelize-typescript';
 import { Driver } from 'src/driver/entities/driver.entity';
 import { Rider } from 'src/rider/entities/rider.entity';
@@ -13,6 +14,9 @@ import { Rider } from 'src/rider/entities/rider.entity';
 @Table({
   tableName: 'ride',
 })
+@DefaultScope(() => ({
+  include: [{ model: Rider }, { model: Driver }],
+}))
 export class Ride extends Model {
   @AutoIncrement
   @PrimaryKey
@@ -20,14 +24,14 @@ export class Ride extends Model {
   id: number;
 
   @ForeignKey(() => Rider)
-  @Column({ field: 'id' })
+  @Column
   riderId: number;
 
   @BelongsTo(() => Rider)
   rider: Rider;
 
   @ForeignKey(() => Driver)
-  @Column({ field: 'id' })
+  @Column
   driverId: number;
 
   @BelongsTo(() => Driver)

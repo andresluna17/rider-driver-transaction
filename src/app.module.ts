@@ -6,9 +6,11 @@ import { DriverModule } from './driver/driver.module';
 import { RideModule } from './ride/ride.module';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { dataBaseConfig } from './database/config';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
+    ConfigModule.forRoot(),
     RiderModule,
     DriverModule,
     RideModule,

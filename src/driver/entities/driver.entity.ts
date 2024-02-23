@@ -1,3 +1,4 @@
+import { BOOLEAN, FLOAT } from 'sequelize';
 import {
   Column,
   Table,
@@ -20,6 +21,21 @@ export class Driver extends Model {
 
   @Column
   email: string;
+
+  @Column({
+    type: BOOLEAN,
+  })
+  inService: boolean;
+
+  @Column({
+    type: FLOAT,
+  })
+  latitude: number;
+
+  @Column({
+    type: FLOAT,
+  })
+  longitude: number;
 
   @Column({
     values: ['active', 'inactive'],
